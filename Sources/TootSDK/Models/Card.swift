@@ -16,7 +16,8 @@ public struct Card: Codable, Hashable {
                 width: Int? = nil,
                 height: Int? = nil,
                 image: String? = nil,
-                embedUrl: String? = nil) {
+                embedUrl: String? = nil,
+                blurhash: String? = nil) {
         self.url = url
         self.title = title
         self.description = description
@@ -30,6 +31,7 @@ public struct Card: Codable, Hashable {
         self.height = height
         self.image = image
         self.embedUrl = embedUrl
+        self.blurhash = blurhash
     }
 
     public enum CardType: String, Codable, Hashable {
@@ -49,4 +51,5 @@ public struct Card: Codable, Hashable {
     public var height: Int?
     public var image: String?
     public var embedUrl: String?
+    public var blurhash: String?
 }

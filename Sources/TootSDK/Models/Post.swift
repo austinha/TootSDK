@@ -8,6 +8,7 @@ public class Post: Codable, Identifiable, @unchecked Sendable {
     public init(id: String,
                 uri: String,
                 createdAt: Date,
+                editedAt: Date?,
                 account: Account,
                 content: String? = nil,
                 visibility: Post.Visibility,
@@ -37,6 +38,7 @@ public class Post: Codable, Identifiable, @unchecked Sendable {
         self.id = id
         self.uri = uri
         self.createdAt = createdAt
+        self.editedAt = editedAt
         self.account = account
         self.content = content
         self.visibility = visibility
@@ -71,6 +73,8 @@ public class Post: Codable, Identifiable, @unchecked Sendable {
     public var uri: String
     /// The date when this post was created.
     public var createdAt: Date
+    /// The most recent date when this post was edited; nil if not edited.
+    public var editedAt: Date?
     /// The account that authored this post.
     public var account: Account
     /// HTML-encoded post content.
@@ -141,6 +145,7 @@ public class Post: Codable, Identifiable, @unchecked Sendable {
         case id
         case uri
         case createdAt
+        case editedAt
         case account
         case content
         case visibility
@@ -175,6 +180,7 @@ extension Post: Hashable {
         lhs.id == rhs.id
             && lhs.uri == rhs.uri
             && lhs.createdAt == rhs.createdAt
+            && lhs.editedAt == rhs.editedAt
             && lhs.account == rhs.account
             && lhs.content == rhs.content
             && lhs.visibility == rhs.visibility
@@ -207,6 +213,7 @@ extension Post: Hashable {
         hasher.combine(id)
         hasher.combine(uri)
         hasher.combine(createdAt)
+        hasher.combine(editedAt)
         hasher.combine(account)
         hasher.combine(content)
         hasher.combine(visibility)

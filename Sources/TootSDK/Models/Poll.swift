@@ -2,6 +2,7 @@
 // Copyright (c) 2022. All rights reserved.
 
 @preconcurrency import struct Foundation.Date
+import Foundation
 
 /// Represents a poll attached to a post.
 public struct Poll: Codable, Hashable, Identifiable, Sendable {
@@ -49,7 +50,8 @@ public struct Poll: Codable, Hashable, Identifiable, Sendable {
     /// Custom emoji to be used for rendering poll options.
     public var emojis: [Emoji]
 
-    public struct Option: Codable, Hashable, Sendable {
+    public struct Option: Codable, Hashable, Sendable/*, Identifiable*/ {
+//        public var id = UUID()
         /// The text value of the poll option. String.
         public var title: String
         /// The number of received votes for this option. Number, or null if results are not published yet.
